@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "reddit"
+version = "0.1.0"
+description = ""
+authors = ["Patipanlee <157189722+Patipanlee@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dbt-core = "^1.8.0"
+dbt-postgres = "^1.8.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

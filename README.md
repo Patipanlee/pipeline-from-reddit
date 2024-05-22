@@ -34,7 +34,7 @@ docker compose down
 
 ## Create DAG
 
-In folder Airflow, we have folder mnt/dag for creating DAG with python.
+In folder Airflow, we have folder /mnt/dag for creating DAG with python.
 
 ## Reddit API
 
@@ -42,5 +42,8 @@ Reddit has an API for extracting data. Can follow this link [**praw**](https://p
 
 ## Data Storage (Postgres)
 
-Airflow must be connected with postgres. Can use airflow UI in topic admin, choose connections, then create connect list
+Airflow must be connected with postgres, you can use airflow UI in topic admin, choose connections, then create connect list.
 
+## Adminer
+
+Port 8090 is the backend for managing the database. In this project, you use PostgreSQL for data storage. You can use PostgreSQL to query data from a database.

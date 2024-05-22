@@ -29,7 +29,7 @@ def _get_date_reddit(**context):
     subreddit = reddit.subreddit(sub)
     get_data = []
 
-    for readit in subreddit.new(limit=100):
+    for readit in subreddit.new(limit=80):
         raw = {
         "timestamp":int(readit.created_utc),
         "author":readit.author.name,
@@ -72,7 +72,7 @@ def _create_table(**context):
             date DATE NOT NULL,
             time TIME NOT NULL,
             author VARCHAR(99) NOT NULL,
-            id VARCHAR(99) NOT NULL,
+            id VARCHAR(99) UNIQUE,
             title VARCHAR(500) NOT NULL,
             score int NOT NULL
         )
@@ -95,7 +95,7 @@ def _load_data_to_postgres(**context):
 
     for i in range(len(d)):
         stamp = datetime.utcfromtimestamp(d["timestamp"][i])
-        a1 = stamp.strftime("%d/%m/%Y")
+        a1 = stamp.strftime("%Y-%m-%d")
         a2 = stamp.strftime("%H:%M:%S")        
         a3 = d["author"][i]
         a4 = d["id"][i]
@@ -103,7 +103,9 @@ def _load_data_to_postgres(**context):
         a6 = d["score"][i]
 
         sql = f"""
-        INSERT INTO reddit (date,time,author,id,title,score) VALUES ('{a1}','{a2}','{a3}','{a4}','{a5}','{a6}')
+        INSERT INTO reddit (date,time,author,id,title,score) 
+        VALUES ('{a1}','{a2}','{a3}','{a4}','{a5}','{a6}')
+        ON CONFLICT (id) DO NOTHING;
         """
         cursor.execute(sql)
     connection.commit()
