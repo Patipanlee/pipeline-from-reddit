@@ -47,3 +47,33 @@ Airflow must be connected with postgres, you can use airflow UI in topic admin, 
 ## Adminer
 
 Port 8090 is the backend for managing the database. In this project, you use PostgreSQL for data storage. You can use PostgreSQL to query data from a database.
+
+## dbt (Data Build Tool)
+
+It is a tool used for managing and transforming data in a data warehouse. Emphasis is placed on using SQL to write code to model data.
+The dbt implementation is run through Poetry, an environment management tool.
+
+### run poetry
+
+run this for install poetry
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+create folder for install poetry in folder airflow and run poetry init
+
+```bash
+poetry init
+```
+### run dbt
+
+add dbt and postgres in poetry
+
+```bash
+poetry add dbt-core dbt-postgres
+```
+run dbt and set up your dbt project
+
+```bash
+poetry run dbt init
+``` 
